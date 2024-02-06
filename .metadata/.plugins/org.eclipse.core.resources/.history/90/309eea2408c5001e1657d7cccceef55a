@@ -1,0 +1,68 @@
+package org.restapi.crud.crud.service;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+
+import org.restapi.crud.crud.model.modelClient;
+
+import jakarta.ws.rs.core.Response;
+
+public class crudservice {
+	
+
+	
+	public crudservice(){
+		
+		try {
+			System.out.println("CONEFCTANDO");
+			
+		} catch(Exception e) {
+			System.out.println(e +"data insert unsuccess.");
+		}
+	}
+
+
+    private static List<modelClient> listaClientes = new ArrayList<modelClient>() {
+        {
+            add(new modelClient("001384529" ,"Gabriel","Borja",36,
+                    "98583xxx000","05/02/2024",null));
+            add(new modelClient("001384528" ,"Andrea","Moscoso",38,
+                    "00583xxx000","01/02/2023",null));
+        }
+    };
+
+	
+    public Response getClients() {
+    	return Response.ok(listaClientes).build();
+		
+    }
+    
+	public Response getClientById(int id){
+		
+		ArrayList<crudmodel> data = new ArrayList<crudmodel>();
+		String select = "select * from person where id =?";
+		PreparedStatement ps = con.prepareStatement(select);
+		ps.setInt(1,id);
+		ResultSet rs = ps.executeQuery();
+		
+		while(rs.next()) {
+			crudmodel model = new crudmodel();
+			
+			model.setName(rs.getString("name")); // column name
+			model.setAge(rs.getInt("age"));		
+			data.add(model);		
+		}		
+		return data;	
+	}
+	
+	
+	
+
+
+}
+

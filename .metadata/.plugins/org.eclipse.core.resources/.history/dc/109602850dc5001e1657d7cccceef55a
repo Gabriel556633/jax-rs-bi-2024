@@ -1,0 +1,71 @@
+package org.restapi.crud.crud.service;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+
+import org.restapi.crud.crud.model.modelClient;
+
+import jakarta.ws.rs.core.Response;
+
+public class crudservice {
+	
+
+	
+	public crudservice(){
+		
+		try {
+			System.out.println("CONEFCTANDO");
+			
+		} catch(Exception e) {
+			System.out.println(e +"data insert unsuccess.");
+		}
+	}
+
+
+    private static List<modelClient> listaClientes = new ArrayList<modelClient>() {
+        {
+            add(new modelClient("001384529" ,"Gabriel","Borja",36,
+                    "98583xxx000","05/02/2024",null));
+            add(new modelClient("001384528" ,"Andrea","Moscoso",38,
+                    "00583xxx000","01/02/2023",null));
+        }
+    };
+
+	
+    public Response getClients() {
+    	return Response.ok(listaClientes).build();
+		
+    }
+    
+	public Response getClientById(String id){
+		
+		if(id.length()>10 || id.length()<10) {
+			return Response.status(500, "ERROR NO PUEDE SER MAYOR DE 10 DIGITOS EL CODIGO").build();
+		}
+		
+		
+		for(int i=0 ; i<id.length();i++) {
+			int indice = listaClientes.get(i).getId().indexOf(id);
+			System.out.println("............."+indice);
+		}
+		
+		boolean existe = listaClientes.get.contains(busqueda);
+		
+		System.out.println("............."+indice);
+		
+		return Response.ok(listaClientes.get(indice)).build();
+	}
+	
+	
+	
+	
+	
+
+
+}
+

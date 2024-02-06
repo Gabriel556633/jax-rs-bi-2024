@@ -1,0 +1,5 @@
+INDEX VERSION 1.134
+C:\GBM\jax-rs\rest-api-using-jax-rs-crud-operation-\rest api using jax-rs\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\99980412.index
+\crud\src\main\java
+C:\GBM\jax-rs\rest-api-using-jax-rs-crud-operation-\rest api using jax-rs\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\4268976469.index
+\GBM10\src\main\java
