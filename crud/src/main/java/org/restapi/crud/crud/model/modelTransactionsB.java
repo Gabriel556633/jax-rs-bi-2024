@@ -2,13 +2,13 @@ package org.restapi.crud.crud.model;;
 
 public class modelTransactionsB {
 
-	private int credito;
+	private float credito;
 
-    private int debito;
+    private float debito;
 
-    private int positivo1;
+    private float positivo1;
 
-    private int positivo2;
+    private float positivo2;
 
 	public modelTransactionsB() {
 		super();
@@ -22,7 +22,7 @@ public class modelTransactionsB {
 		this.positivo2 = positivo2;
 	}
 
-	public int getCredito() {
+	public float getCredito() {
 		return credito;
 	}
 
@@ -30,7 +30,7 @@ public class modelTransactionsB {
 		this.credito = credito;
 	}
 
-	public int getDebito() {
+	public float getDebito() {
 		return debito;
 	}
 
@@ -38,7 +38,7 @@ public class modelTransactionsB {
 		this.debito = debito;
 	}
 
-	public int getPositivo1() {
+	public float getPositivo1() {
 		return positivo1;
 	}
 
@@ -46,7 +46,7 @@ public class modelTransactionsB {
 		this.positivo1 = positivo1;
 	}
 
-	public int getPositivo2() {
+	public float getPositivo2() {
 		return positivo2;
 	}
 

@@ -1,4 +1,8 @@
-package org.restapi.crud.crud.model;;
+package org.restapi.crud.crud.model;
+
+import java.util.ArrayList;
+
+;
 
 public class modelClient {
 
@@ -14,14 +18,27 @@ public class modelClient {
 
     private String fechaCreacion;
 
-    private modelTransactionsB[] movimientos;
+    private ArrayList<modelTransactionsB> movimientos;
+    
+    private float saldo;
 
 	public modelClient() {
 		super();
 	}
 
+
+	public float getSaldo() {
+		return saldo;
+	}
+
+
+	public void setSaldo(float saldo) {
+		this.saldo = saldo;
+	}
+
+
 	public modelClient(String id, String nombre, String apellido, Integer edad, String numeroCuenta,
-			String fechaCreacion, modelTransactionsB[] movimientos) {
+			String fechaCreacion, ArrayList<modelTransactionsB> movimientos, Integer saldo) {
 		super();
 		this.id = id;
 		this.nombre = nombre;
@@ -30,6 +47,7 @@ public class modelClient {
 		this.numeroCuenta = numeroCuenta;
 		this.fechaCreacion = fechaCreacion;
 		this.movimientos = movimientos;
+		this.saldo = saldo;
 	}
 
 	public String getId() {
@@ -80,11 +98,11 @@ public class modelClient {
 		this.fechaCreacion = fechaCreacion;
 	}
 
-	public modelTransactionsB[] getMovimientos() {
+	public ArrayList<modelTransactionsB> getMovimientos() {
 		return movimientos;
 	}
 
-	public void setMovimientos(modelTransactionsB[] movimientos) {
+	public void setMovimientos(ArrayList<modelTransactionsB> movimientos) {
 		this.movimientos = movimientos;
 	}
     
