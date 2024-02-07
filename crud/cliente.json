@@ -1,0 +1,29 @@
+{
+"apellido": "TIPSY",
+"edad": 38,
+"fechaCreacion": "01/02/2023",
+"id": "0013845270",
+"movimientos": [
+	{
+	"credito": 1500,
+	"debito": 1500,
+	"positivo1": 2000,
+	"positivo2": 500
+	},
+	{
+	"credito": 5000,
+	"debito": 2000,
+	"positivo1": 10000,
+	"positivo2": 500
+	},
+	{
+	"credito": 3000,
+	"debito": 2000,
+	"positivo1": 4000,
+	"positivo2": 1000
+	}
+],
+"nombre": "Daniela",
+"numeroCuenta": "00583xxx000",
+"saldo": 0
+}

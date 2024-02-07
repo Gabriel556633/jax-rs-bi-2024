@@ -1,5 +1,9 @@
 package org.restapi.crud.crud.service;
 
+import java.io.File;
+import java.io.IOException;
+import java.net.URISyntaxException;
+import java.net.URL;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -7,9 +11,16 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.io.IOException;
+import java.net.URISyntaxException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 
 import org.restapi.crud.crud.model.modelClient;
 import org.restapi.crud.crud.model.modelTransactionsB;
+
+
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 import jakarta.ws.rs.core.Response;
 
@@ -34,28 +45,27 @@ public class crudservice {
 		}
 	};
 	
-	private static List<modelClient> listaClientes = new ArrayList<modelClient>() {
-		{
-			add(new modelClient("0013845290", "Gabriel", "Borja", 36, "98583xxx000", "05/02/2024", listaTransacciones,0));
-			add(new modelClient("0013845290", "Gabriel", "Borja", 36, "98583xxx000", "05/02/2024", listaTransacciones,0));
-			add(new modelClient("0013845280", "Andrea", "Moscoso", 38, "00583xxx000", "01/02/2023",listaTransacciones,0));
-			add(new modelClient("0013845270", "Daniela", "TIPSY", 38, "00583xxx000", "01/02/2023",listaTransacciones,0));
-		}
+	private static List<modelClient> listaClientes = new ArrayList<modelClient>() {	
 	};
 
 	///////////////////////////////////////////////////////////////////////////////////////////////////////
 	
 	
 	////////////////////////////////////////////////////////////////////////ALL
-	public Response getClients() {
+	public Response getClients() throws URISyntaxException, IOException {
+		listaClientes.add(getJson());
+		modelClient client2 = new modelClient();
+		client2=getJson();
+		client2.setId("0013845280");
+		client2.setNombre("RIKARDO");
+		listaClientes.add(client2);
 		return Response.ok(listaClientes).build();
-
 	}
 	
 	///////////////////////////////////////////////////////////////////////////by ID
 
-	public Response getClientById(String id) {
-
+	public Response getClientById(String id) throws URISyntaxException, IOException {
+		listaClientes.add(getJson());
 		if (id.length() > 10) {
 			return Response.status(500, "ERROR NO PUEDE SER MAYOR DE 10 DIGITOS EL CODIGO").build();
 		}
@@ -100,10 +110,36 @@ public class crudservice {
 			 (listaClientes.get(indice).getMovimientos().get(x).getPositivo1()+"+"+
 					 listaClientes.get(indice).getMovimientos().get(x).getPositivo2()+"-"+
 					 listaClientes.get(indice).getMovimientos().get(x).getCredito()+"-"+
-					 listaClientes.get(indice).getMovimientos().get(x).getDebito());
+					 listaClientes.get(indice).getMovimientos().get(x).getDebito()+"+");
 			 }
 		System.out.println("SALDO = "+saldo1);
 		return Response.ok(listaClientes.get(indice)).build();}
+	
+	
+	//////////////////////////////////////////leer JSON//////////
+	
+
+	public modelClient getJson() throws URISyntaxException, IOException {		
+	
+
+        byte[] jsonData = Files.readAllBytes(Paths.get("C:\\GBM\\jax-rs\\rest-api-using-jax-rs-crud-operation-\\rest api using jax-rs\\crud\\cliente.json"));
+        ObjectMapper objectMapper = new ObjectMapper();
+
+        modelClient client = objectMapper.readValue(jsonData, modelClient.class);
+
+        System.out.println("Employee Object\n"+client.getApellido());
+        System.out.println(client.getId());
+		System.out.println(client.getNombre());
+		System.out.println(client.getApellido());
+		System.out.println(client.getEdad());
+		System.out.println(client.getNumeroCuenta());
+		System.out.println(client.getMovimientos());
+		System.out.println(client.getSaldo());
+		return client;	
+	}
+	
+
+
 }
 
 	
